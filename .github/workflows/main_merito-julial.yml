@@ -2,7 +2,7 @@
 # More GitHub Actions for Azure: https://github.com/Azure/actions
 
 name: Build and deploy ASP.Net Core app to Azure Web App - merito-julial
-
+  
 on:
   push:
     branches:
@@ -24,9 +24,11 @@ jobs:
           dotnet-version: '8.x'
 
       - name: Build with dotnet
+        working-directory: ./DotNetMeritoWebApp
         run: dotnet build --configuration Release
 
       - name: dotnet publish
+        working-directory: ./DotNetMeritoWebApp
         run: dotnet publish -c Release -o "${{env.DOTNET_ROOT}}/myapp"
 
       - name: Upload artifact for deployment job
